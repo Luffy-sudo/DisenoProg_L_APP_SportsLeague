@@ -1,0 +1,59 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"name":"csharp","languageName":"csharp"},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"html","languageName":"HTML"},{"name":"http","languageName":"HTTP"},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"mermaid","languageName":"Mermaid"},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"value"}]}}
+
+#!markdown
+
+https://github.com/Luffy-sudo/DisenoProg_L_APP_SportsLeague.git forked from https://github.com/cdiazserna/DisenoProg_L_APP_SportsLeague.git
+
+The **git fetch** command downloads commits, files and refs from a remote repository into your local repository without updating your local working branch. This allows you to review the changes before integrating them into your work.
+
+The **git pull** command downloads content and automatically integrates the new commits into your current local branch and working directory.
+
+
+**APP_SportsLeague**
+
+"ASP.NET Core Web API project with a clear layered structure (API, Domain, DataAccess)".
+
+
+**High Level**
+
+    Layers
+    
+        - appsettings: Development.json (controllers + mappings + Program).
+        - Auditbase.cs (entities, interfaces, services).
+        - Initial DataBase.cs (EF Core DbContext, repositories, migrations).
+    
+    Tech: ASP.NET Core Web API, Entity Framework Core (Code-First), AutoMapper, dependency injection, ILogger.
+
+**Data model / structures**
+
+    - Entities: Team, Player, Referee, TournamentTeam (join entity). All inherit AuditBase (Id, CreatedAt, UpdatedAt).
+
+    - Enums: PlayerPosition (and TournamentStatus used by Tournament).
+
+    - Relations
+
+        - Team 1:N Players (Players, TeamID)
+        - TournamentTeam is a joint with unique compsite index per (TournamentID, TeamID).
+
+    - Database constraints: unique indexes (e.g., Team.Name unique); composite unique index on Player (TeamID, Number) to enforce unique jersey numbers per team.
+
+**Design patterns / Architecture choices**
+    
+    - Service layer: business logic lives in services (e.g., PlayerService, TeamService) that call repositories and perform validations (existence, uniqueness).
+        
+        - Files: SportsLeague.Domain/Services/*, SportsLeague.Domain/Interfaces/Services/*
+
+    
+    - DTOs + AutoMapper: request / response DTOs separate API contract from domain entities; mapping configured in MappingProfile.
+
+        - Files: SportsLeague.API/DTOs/*, MappingProfile.cs
+
+    
+
+
+
+
+
+    
