@@ -675,10 +675,24 @@ namespace SportsLeague.DataAccess.Migrations
 
 Una API Web es una interfaz de programación que permite la comunicación entre diferentes aplicaciones, servidores o servicios a través de internet utilizando protocolo HTTP. Actúa como un intermediario estandarizado para intercambiar datos (frecuentemente en formato JSON o XML) y funcionalidades, facilitando la integración de software sin conocer los detalles internos de cada sistema.
 
-**Funcionamiento*:* Se basa en peticiones HTTP (GET, POST, PUT, DELETE) hacia endpoints (URLs) específicas para consultar o manipular datos.
+*Funcionamiento*: Se basa en peticiones HTTP (GET, POST, PUT, DELETE) hacia endpoints (URLs) específicas para consultar o manipular datos.
 
 **Creación de API Web con ASP.NET Core**
 
 ASP.NET Core (framework) admite la creación de API Web mediante controladores o mediante API mínimas. Los controladores de una API web son clases que se derivan de **ControllerBase** (A base class for an MVC controller without view support). Los controladores se activan y eliminan por solicitud.
 
 Un controlador en ASP.NET es una clase C# fundamental en la arquitectura MVC o API Web, encargada de gestionar las solicitudes HTTP entrantes del navegador o cliente. Actúa como intermediario: recibe la petición, procesa la lógica de negocio, interactúa con el modelo (datos) y devuelve una respuesta, usualmente una vista HTML o datos JSON.
+
+#!markdown
+
+**Aspectos clave de los controladores en ASP.NET**
+
+- **Clases Públicas**: Generalmente heredan de *Controller* (MVC) o *ControllerBase* (API) y suelen llevar el sufijo "Controller" (ej: Homecontroller). 
+
+- **Acciones (Actions)**: Los métodos públicos dentro de un controlador se llaman "acciones", que responden a URLs específicas.
+
+- **Manejo de Solicitudes (HTTP)**: Utilizan métodos como HttpGet o HttpPost para procesar peticiones.
+
+- **Respuestas**: Pueden devolver vistas (ViewResult), datos (JsonResult), redirecciones (RedirectResult), entre otros.
+
+- **Intermediario**: Su función es coordinar la entrada de datos del usuario, actualizar el modelo y decidir qué vista mostrar.
