@@ -6,10 +6,6 @@
 
 https://github.com/Luffy-sudo/DisenoProg_L_APP_SportsLeague.git forked from https://github.com/cdiazserna/DisenoProg_L_APP_SportsLeague.git
 
-The **git fetch** command downloads commits, files and refs from a remote repository into your local repository without updating your local working branch. This allows you to review the changes before integrating them into your work.
-
-The **git pull** command downloads content and automatically integrates the new commits into your current local branch and working directory.
-
 **APP_SportsLeague**
 
 "ASP.NET Core Web API project with a clear layered structure (API, Domain, DataAccess)".
@@ -34,7 +30,7 @@ The project follows a layered architecture, a common design pattern in software 
 
 This separation allows changes in one layer (e.g., switching databases) without affecting others, improves testability, and follows SOLID principles. The [SportsLeague.slnx](SportsLeague.slnx/) file suggests a solution with multiple projects, reinforcing modularity.
 
-*Tech*: ASP.NET Core Web API, Entity Framework Core (Code-First), AutoMapper, dependency injection, ILogger.
+_Tech_: ASP.NET Core Web API, Entity Framework Core (Code-First), AutoMapper, dependency injection, ILogger.
 
 **Data model / structures**
 
