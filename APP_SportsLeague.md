@@ -34,7 +34,7 @@ The project follows a layered architecture, a common design pattern in software 
 
 This separation allows changes in one layer (e.g., switching databases) without affecting others, improves testability, and follows SOLID principles. The [SportsLeague.slnx](SportsLeague.slnx/) file suggests a solution with multiple projects, reinforcing modularity.
 
-Tech: ASP.NET Core Web API, Entity Framework Core (Code-First), AutoMapper, dependency injection, ILogger.
+*Tech*: ASP.NET Core Web API, Entity Framework Core (Code-First), AutoMapper, dependency injection, ILogger.
 
 **Data model / structures**
 
