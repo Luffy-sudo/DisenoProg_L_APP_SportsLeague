@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="700" viewBox="0 0 1100 700">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+    </marker>
+    <style>
+      .layer { fill:#f6f8fa; stroke:#2b2f33; stroke-width:1.6; rx:8; }
+      .box { fill:#ffffff; stroke:#2b2f33; stroke-width:1.2; rx:6; }
+      .title { font: bold 16px sans-serif; fill:#0b2a6b; }
+      .label { font: 12px sans-serif; fill:#222; }
+      .small { font: 11px sans-serif; fill:#444; }
+    </style>
+  </defs>
+
+  <!-- Layers -->
+  <rect class="layer" x="40" y="30" width="1000" height="180" />
+  <text class="title" x="60" y="55">API Layer (SportsLeague.API)</text>
+
+  <rect class="layer" x="40" y="240" width="1000" height="200" />
+  <text class="title" x="60" y="265">Domain Layer (SportsLeague.Domain)</text>
+
+  <rect class="layer" x="40" y="470" width="1000" height="200" />
+  <text class="title" x="60" y="495">DataAccess Layer (SportsLeague.DataAccess)</text>
+
+  <!-- API boxes -->
+  <rect class="box" x="80" y="80" width="220" height="80" />
+  <text class="label" x="120" y="105">Controllers</text>
+  <text class="small" x="105" y="125">TeamController, PlayerController</text>
+
+  <rect class="box" x="340" y="80" width="220" height="80" />
+  <text class="label" x="380" y="105">DTOs & Mapping</text>
+  <text class="small" x="360" y="125">PlayerRequestDTO, PlayerResponseDTO</text>
+  <text class="small" x="360" y="140">MappingProfile (AutoMapper)</text>
+
+  <rect class="box" x="600" y="80" width="340" height="80" />
+  <text class="label" x="640" y="105">Program & DI</text>
+  <text class="small" x="640" y="125">Program.cs (DbContext, Repos, Services)</text>
+
+  <!-- Domain boxes -->
+  <rect class="box" x="80" y="300" width="240" height="140" />
+  <text class="label" x="120" y="325">Entities</text>
+  <text class="small" x="105" y="345">Team, Player, Referee, Tournament</text>
+  <text class="small" x="105" y="362">AuditBase (Id, CreatedAt, UpdatedAt)</text>
+
+  <rect class="box" x="380" y="300" width="290" height="140" />
+  <text class="label" x="420" y="325">Services</text>
+  <text class="small" x="405" y="345">ITeamService / TeamService</text>
+  <text class="small" x="405" y="362">IPlayerService / PlayerService</text>
+
+  <rect class="box" x="700" y="300" width="240" height="140" />
+  <text class="label" x="740" y="325">Repository Interfaces</text>
+  <text class="small" x="715" y="345">IGenericRepository&lt;T&gt;</text>
+  <text class="small" x="715" y="362">IPlayerRepository, ITeamRepository</text>
+
+  <!-- DataAccess boxes -->
+  <rect class="box" x="80" y="520" width="300" height="120" />
+  <text class="label" x="120" y="545">LeagueDbContext</text>
+  <text class="small" x="105" y="565">OnModelCreating, DbSet&lt;T&gt; configuration</text>
+
+  <rect class="box" x="420" y="520" width="320" height="120" />
+  <text class="label" x="460" y="545">Repositories (EF Core)</text>
+  <text class="small" x="445" y="565">GenericRepository&lt;T&gt;</text>
+  <text class="small" x="445" y="582">PlayerRepository, TeamRepository, RefereeRepository</text>
+
+  <rect class="box" x="760" y="520" width="220" height="120" />
+  <text class="label" x="800" y="545">Migrations / Schema</text>
+  <text class="small" x="780" y="565">InitialDataBase, AddPlayerEntity</text>
+
+  <!-- Arrows connections -->
+  <line x1="200" y1="160" x2="200" y2="240" stroke="#333" stroke-width="1.4" marker-end="url(#arrow)" />
+  <line x1="460" y1="160" x2="460" y2="300" stroke="#333" stroke-width="1.4" marker-end="url(#arrow)" />
+  <line x1="740" y1="160" x2="740" y2="300" stroke="#333" stroke-width="1.4" marker-end="url(#arrow)" />
+
+  <line x1="200" y1="440" x2="200" y2="520" stroke="#333" stroke-width="1.4" marker-end="url(#arrow)" />
+  <line x1="460" y1="440" x2="460" y2="520" stroke="#333" stroke-width="1.4" marker-end="url(#arrow)" />
+  <line x1="740" y1="440" x2="740" y2="520" stroke="#333" stroke-width="1.4" marker-end="url(#arrow)" />

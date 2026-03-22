@@ -78,6 +78,10 @@ Tech: ASP.NET Core Web API, Entity Framework Core (Code-First), AutoMapper, depe
 
 - Migrations present (Code-First SQL generation) under [Migrations](SportsLeague.DataAccess/Migrations/)
 
+**Instancia de DbContext**
+
+Una instancia de DbContext representa una sesión con la base de datos y se puede usar para consultar y guardar instancias de las entidades. DbContext es una combinación de los patrones de unidad de trabajo y repositorio.
+
 **API Web**
 
 Una API Web es una interfaz de programación que permite la comunicación entre diferentes aplicaciones, servidores o servicios a través de internet utilizando protocolo HTTP. Actúa como un intermediario estandarizado para intercambiar datos (frecuentemente en formato JSON o XML) y funcionalidades, facilitando la integración de software sin conocer los detalles internos de cada sistema.
@@ -98,6 +102,10 @@ Un controlador es una clase instanciable, normalmente pública, en la que se cum
 
 Los controladores se usan para definir y agrupar un conjunto de acciones. Una acción (o método de acción) es un método en un controlador que controla las solicitudes. Los controladores agrupan lógicamente acciones similares. Esta agregación de acciones permite aplicar de forma colectiva conjuntos comunes de reglas, como el enrutamiento, el almacenamiento en caché y la autorización. Las solicitudes se asignan a acciones mediante el enrutamiento. Los controladores se activan y eliminan por solicitud.
 
+En el patrón Model-View-Controller, un controlador se encarga del procesamiento inicial de la solicitud y la creación de instancias del modelo.
+
+El controlador toma el resultado del procesamiento del modelo (si existe) y devuelve o bien la vista correcta y sus datos de vista asociados, o bien el resultado de la llamada API.
+
 Por convención, las clases de controlador:
 
 - Residen en la carpeta Controllers del nivel raíz del proyecto.
@@ -116,3 +124,19 @@ Un controlador en ASP.NET es una clase C# fundamental en la arquitectura MVC o A
 - **Respuestas**: Pueden devolver vistas (ViewResult), datos (JsonResult), redirecciones (RedirectResult), entre otros.
 
 - **Intermediario**: Su función es coordinar la entrada de datos del usuario, actualizar el modelo y decidir qué vista mostrar.
+
+**Data Transfer Object (DTO)**
+
+Is a design pattern used in software development to move data efficiently between different layers or processes of an application. A DTO is a simple object that only contains data storage, accesors (getters and setters), and possibly serialization logic, but no business logic.
+
+**Object-to-Object Mapping (DTOs and Entitites)**
+
+Object mapping is the process of converting an object of one type (e.g., a database entity) to another type (e.g., a Data Transfer Object, used in API response). This helps decouple layers, improve performance, and enhance security.
+
+Common libraries for this are:
+
+- **AutoMapper**: The most widely adopted convention-based mapping tool. It uses profiles to define mapping configurations with minimal code.
+
+**Entity Framework Core (EF Core) Code First**
+
+The EF Core Code First approach is a development methodology where the application's C# classes and configurations are used to generate or evolve the database schema automatically. This approach prioritizes domain modeling in code over manual database design.
