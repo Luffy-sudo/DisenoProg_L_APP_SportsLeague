@@ -178,9 +178,32 @@ A correctly composed HTTP request contains the following elements: <br/>
 2. A series of HTTP headers, or header fields.
 3. A message body, if needed.<br/><br/>
 
+<h4>HTTP Verbs</h4>
+
+- <b>Get</b>: Representa el Select, me sirve para traer datos desde el server del cliente, el Body Request no lleva data.<br/></br>
+- <b>Post</b>: Representa el Create, se usa para crear nuevos recursos en el servidor. El Body Request sí lleva data, que es la que se va a crear.<br/></br>
+- <b>Put</b>: Representa el Update, se usa para crear y actualizar recursos en el server. El Body Request sí lleva data.<br></br>
+- <b>Delete</b>: Representa el Delete, se usa para crear y actualizar recursos en el server. El Body Request sí lleva data.<br></br>
+- <b>Patch</b>: Representa el Update, se usa para modificar una parte de todo un recurso.<br></br>
+
 <a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-10.0"><h4 id = "Middleware">ASP.NET Core Middleware</h4></a>
 
 Middleware is software that's assembled into an app pipeline to handle requests and responses. Each middleware:
 
 - Choses whether to pass the request to the next middleware in the pipeline.
-- Can perform work before and after the next middleware in the pipeline
+- Can perform work before and after the next middleware in the pipeline<br/><br/>
+
+<h4 id="Enum">Enum</h4>
+
+Es un tipo especial de variable que tiene la propiedad de que su rango de valores es un conjunto de constantes enteras denominadas constantes de enumeración, a cada una de las cuales se le asigna un valor.</br></br>
+
+<h4 id="Interfaz">Interfaz</h4>
+
+Es un punto de interacción entre dos sistemas o componentes, lo que les permite comunicarse e intercambiar información.</br></br>
+
+<h4 id="LINQ">Language Integrated Query (LINQ)</h4>
+Es el nombre de un conjunto de tecnologías basadas en la integración de funcionalidades de consulta directamente en el lenguaje C#. Tradicionalmente, las consultas en los datos se expresan como cadenas simples sin comprobación de tipos en tiempo de compilación o compatibilidad con IntelliSense. Además, tiene que aprender un lenguaje de consulta diferente para cada tipo de origen de datos: bases de datos SQL, documentos XML, varios servicios web, etc. Con LINQ, una consulta es una construcción de lenguaje de primera clase, al igual que clases, métodos y eventos.</br></br>
+
+<h4> JSON </h4>
+
+JSON (JavaScript Object Notation) es un formato de texto ligero y estándar,basado en la sintaxis de objetos de JavaScript, utilizado para almacenar y transportar datos estructurados. Es independiente del lenguaje, legible por humanos y eficiente para el intercambio de información entre servidores y aplicaciones web.
