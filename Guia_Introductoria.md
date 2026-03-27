@@ -14,6 +14,8 @@ Una [API REST](APP_SportsLeague.md#api-rest) completa para la gestión de una Li
 - [Swagger](APP_SportsLeague.md#Swagger)
 - [Swashbuckle](APP_SportsLeague.md#Swashbuckle)
 
+<br><br>
+
 **Nota Importante:** Primero construiremos toda la API completa y funcional. Una vez terminada, conectaremos el frontend en Angular. Esto nos permite probar toda la lógica de negocio de forma independiente usando Swagger o Postman.<br><br>
 
 #### Arquitectura del proyecto
