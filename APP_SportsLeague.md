@@ -45,7 +45,8 @@ The most widely adopted convention-based mapping tool. It uses profiles to defin
 <h4 id="Swagger">Swagger</h4> 
 Suite of tools for API developers. Swagger's open-source tooling usage can be broken up into different use cases: development, interaction with APIs, and documentation.<br><br>
 
-<h4 id="Swashbuckle">Swashbuckle.AspNetCore</h4>: Is an open-source library that provides OpenAPI (formerly Swagger) tooling for APIs built with ASP.NET Core. It automatically generates interactive documentation and testing UI directly from your application's routes, controllers, and models.
+<h4 id="Swashbuckle">Swashbuckle.AspNetCore</h4>
+Is an open-source library that provides OpenAPI (formerly Swagger) tooling for APIs built with ASP.NET Core. It automatically generates interactive documentation and testing UI directly from your application's routes, controllers, and models.
 
 **Data model / structures**
 
