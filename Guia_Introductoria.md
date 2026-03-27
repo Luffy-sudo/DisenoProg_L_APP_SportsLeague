@@ -44,9 +44,9 @@ Es el corazón de la aplicación. Contiene toda la lógica de negocio y las regl
 
 - Entities: las clases que representan las tablas
 
-- [Enums](APP_SportsLeague.md#Enum): tipos numerados como [PlayerPosition](SportsLeague.Domain\Enums\PlayerPosition.cs), [TournamentStatus](SportsLeague.Domain\Enums\TournamentStatus.cs)
+- [Enums](APP_SportsLeague.md#Enum): tipos numerados como [PlayerPosition](SportsLeague.Domain/Enums/PlayerPosition.cs), [TournamentStatus](SportsLeague.Domain/Enums/TournamentStatus.cs)
 
-- [Interfaces](APP_SportsLeague.md#Interfaz): contratos que definen qué operaciones existen ([ITeamRepository](SportsLeague.Domain\Interfaces\Repositories\ITeamRepository.cs), [ITeamService](SportsLeague.Domain\Interfaces\Services\ITeamService.cs)). Las implementaciones concretas están en otras capas.
+- [Interfaces](APP_SportsLeague.md#Interfaz): contratos que definen qué operaciones existen ([ITeamRepository](SportsLeague.Domain/Interfaces/Repositories/ITeamRepository.cs), [ITeamService](SportsLeague.Domain/Interfaces/Services/ITeamService.cs)). Las implementaciones concretas están en otras capas.
 
 - Services: clases que implementan la lógica de negocio. Validan datos, aplican reglas y coordinan las operaciones con los repositorios.<br/></br>
 
@@ -54,7 +54,7 @@ Es el corazón de la aplicación. Contiene toda la lógica de negocio y las regl
 
 Se encarga exclusivamente de la comunicación con la base de datos SQL Server a través de [Entity Framework Core](APP_SportsLeague.md#EFCoreCodeFirst).
 
-- [LeagueDbContext.cs](SportsLeague.DataAccess\Context\LeagueDbContext.cs): clase que configura la conexión a la base de datos y define las tablas (DbSets).
+- [LeagueDbContext.cs](SportsLeague.DataAccess/Context/LeagueDbContext.cs): clase que configura la conexión a la base de datos y define las tablas (DbSets).
 
 - [Repositories](SportsLeague.DataAccess/Repositories/): implementaciones concretas de las interfaces definidas en [Domain](SportsLeague.Domain). Aquí se ejecutan los queries con [LINQ](APP_SportsLeague.md#LINQ) y EF Core.
 
@@ -64,21 +64,21 @@ Se encarga exclusivamente de la comunicación con la base de datos SQL Server a 
 
 Cuando el frontend (o Swagger) hace una petición HTTP a nuestra API, este es el recorrido que sigue:
 
-1. **El frontend envía: POST /api/Team con un [JSON](APP_SportsLeague.md#JSON) ([TeamRequestDTO](SportsLeague.API\DTOs\Request\TeamRequestDTO.cs))<br/><br/>**
+1. **El frontend envía: POST /api/Team con un [JSON](APP_SportsLeague.md#JSON) ([TeamRequestDTO](SportsLeague.API/DTOs/Request/TeamRequestDTO.cs))<br/><br/>**
 
-2. **[TeamController](SportsLeague.API\Controllers\TeamController.cs) recibe el DTO**<br/><br/>
+2. **[TeamController](SportsLeague.API/Controllers/TeamController.cs) recibe el DTO**<br/><br/>
 
-   → Usa AutoMapper para convertir [TeamRequestDTO](SportsLeague.API\DTOs\Request\TeamRequestDTO.cs) → [Team](SportsLeague.Domain\Entities\Team.cs) (Entity)
+   → Usa AutoMapper para convertir [TeamRequestDTO](SportsLeague.API/DTOs/Request/TeamRequestDTO.cs) → [Team](SportsLeague.Domain/Entities/Team.cs) (Entity)
 
-   → Llama a [\_teamRepository.CreateAsync(team)](SportsLeague.Domain\Services\TeamService.cs)<br><br/>
+   → Llama a [/\_teamRepository.CreateAsync(team)](SportsLeague.Domain/Services/TeamService.cs)<br><br/>
 
-3. **[TeamService](SportsLeague.Domain\Services\TeamService.cs) recibe la Entity Team**<br/><br/>
+3. **[TeamService](SportsLeague.Domain/Services/TeamService.cs) recibe la Entity Team**<br/><br/>
 
    → Valida reglas de negocio (nombre único, datos correctos)
 
-   → Llama a [\_teamRepository.CreateAsync(team)](SportsLeague.Domain\Services\TeamService.cs)<br><br/>
+   → Llama a [/\_teamRepository.CreateAsync(team)](SportsLeague.Domain/Services/TeamService.cs)<br><br/>
 
-4. **[TeamRepository](SportsLeague.DataAccess\Repositories\TeamRepository.cs) recibe la Entity Team**<br/><br/>
+4. **[TeamRepository](SportsLeague.DataAccess/Repositories/TeamRepository.cs) recibe la Entity Team**<br/><br/>
 
 → Usa Entity Framework Core para insertar en la tabla Teams de SQL Server
 
@@ -86,7 +86,7 @@ Cuando el frontend (o Swagger) hace una petición HTTP a nuestra API, este es el
 
 5. **La respuesta viaja de vuelta:**
 
-[Repository](SportsLeague.DataAccess\Repositories) → [Service](SportsLeague.Domain\Services) → [Controller](SportsLeague.API\Controllers) → AutoMapper (Team → [TeamResponseDTO](SportsLeague.API\DTOs\Response\TeamResponseDTO.cs)) → JSON al frontend <br/><br/><br/>
+[Repository](SportsLeague.DataAccess/Repositories) → [Service](SportsLeague.Domain/Services) → [Controller](SportsLeague.API/Controllers) → AutoMapper (Team → [TeamResponseDTO](SportsLeague.API/DTOs/Response/TeamResponseDTO.cs)) → JSON al frontend <br/><br/><br/>
 
 #### Referencias entre proyectos <br><br/>
 
