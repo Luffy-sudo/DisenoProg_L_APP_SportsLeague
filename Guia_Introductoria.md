@@ -46,7 +46,7 @@ Es el corazón de la aplicación. Contiene toda la lógica de negocio y las regl
 
 - [Interfaces](APP_SportsLeague.md#Interfaz): contratos que definen qué operaciones existen ([ITeamRepository](SportsLeague.Domain\Interfaces\Repositories\ITeamRepository.cs), [ITeamService](SportsLeague.Domain\Interfaces\Services\ITeamService.cs)). Las implementaciones concretas están en otras capas.
 
-- Services: clases que implementan la lógica de negocio. Validan datos, aplican reglas y coordinan las operaciones con los repositorios.
+- Services: clases que implementan la lógica de negocio. Validan datos, aplican reglas y coordinan las operaciones con los repositorios.<br/></br>
 
 **Capa de Acceso a Datos**: [SportsLeague.DataAccess](SportsLeague.DataAccess/)
 
