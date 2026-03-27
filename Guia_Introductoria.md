@@ -36,7 +36,7 @@ Es el punto de entrada de la aplicación. Recibe las [peticiones HTTP](APP_Sport
 
 - [Middlewares](APP_SportsLeague.md#Middleware): manejo global de errores y logging.<br/><br/>
 
-- [Programs.cs](SportsLeague.API/Program.cs): configuración de servicios e inyección de dependencias.<br/><br/>
+- [Program.cs](SportsLeague.API/Program.cs): configuración de servicios e inyección de dependencias.<br/><br/>
 
 **Capa de Negocio**: [SportsLeague.Domain](SportsLeague.Domain/)
 
