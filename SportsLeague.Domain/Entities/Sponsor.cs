@@ -1,8 +1,9 @@
+using SportsLeague.Domain.Entities;
 using SportsLeague.Domain.Enums;
 
 namespace SportsLeague.Domain.Entities
 {
-    public class Sponsor
+    public class Sponsor: AuditBase
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
@@ -13,7 +14,7 @@ namespace SportsLeague.Domain.Entities
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
-        // Navigation property for the N:M relationship
+        
         public ICollection<TournamentSponsor> TournamentSponsors { get; set; } = new List<TournamentSponsor>();
     }
 }
