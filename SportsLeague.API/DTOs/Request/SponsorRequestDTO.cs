@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace SportsLeague.Domain.DTOs.Request
+namespace SportsLeague.API.DTOs.Request
 {
     public class SponsorRequestDTO
     {

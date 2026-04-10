@@ -1,4 +1,4 @@
-namespace SportsLeague.Domain.DTOs.Response
+namespace SportsLeague.API.DTOs.Response
 {
     public class SponsorResponseDTO
     {
