@@ -2,69 +2,66 @@ using SportsLeague.Domain.Entities;
 using SportsLeague.Domain.Interfaces.Repositories;
 using SportsLeague.Domain.Interfaces.Services;
 
-namespace SportsLeague.Business.Services // Asegúrate de tener tu namespace
+namespace SportsLeague.Domain.Services
 {
     public class SponsorService : ISponsorService
     {
         private readonly ISponsorRepository _sponsorRepository;
-        private readonly ITournamentRepository _tournamentRepository;
         private readonly ITournamentSponsorRepository _tournamentSponsorRepository;
 
         public SponsorService(
             ISponsorRepository sponsorRepository, 
-            ITournamentRepository tournamentRepository,
             ITournamentSponsorRepository tournamentSponsorRepository)
         {
             _sponsorRepository = sponsorRepository;
-            _tournamentRepository = tournamentRepository;
             _tournamentSponsorRepository = tournamentSponsorRepository;
         }
 
-        // Esta es la implementación válida que cumple con la interfaz
         public async Task<IEnumerable<Sponsor>> GetAllAsync()
         {
             return await _sponsorRepository.GetAllAsync();
         }
 
+        // 1. Fix: Implementación de GetByIdAsync
+        public async Task<Sponsor?> GetByIdAsync(int id)
+        {
+            return await _sponsorRepository.GetByIdAsync(id);
+        }
+
+        // 2. Fix: Implementación de UpdateAsync
+        public async Task UpdateAsync(Sponsor sponsor)
+        {
+            await _sponsorRepository.UpdateAsync(sponsor);
+        }
+
+        // 3. Fix: Implementación de DeleteAsync
+        public async Task DeleteAsync(int id)
+        {
+            await _sponsorRepository.DeleteAsync(id);
+        }
+
         public async Task CreateSponsorAsync(Sponsor sponsor)
         {
-            var existing = await _sponsorRepository.GetByNameAsync(sponsor.Name);
-            if (existing != null) 
-                throw new InvalidOperationException("El nombre del patrocinador ya existe.");
-
-            if (!IsValidEmail(sponsor.ContactEmail))
-                throw new InvalidOperationException("El formato del email no es válido.");
+            // Validación de nombre duplicado
+            if (await _sponsorRepository.ExistsByNameAsync(sponsor.Name))
+            {
+                throw new InvalidOperationException("A sponsor with the same name already exists.");
+            }
 
             await _sponsorRepository.CreateAsync(sponsor);
         }
 
         public async Task LinkToTournamentAsync(int sponsorId, int tournamentId, decimal contractAmount)
         {
-            var sponsor = await _sponsorRepository.GetByIdAsync(sponsorId);
-            if (sponsor == null) throw new KeyNotFoundException("Sponsor no encontrado.");
-
-            var tournament = await _tournamentRepository.GetByIdAsync(tournamentId);
-            if (tournament == null) throw new KeyNotFoundException("Tournament no encontrado.");
-
-            var alreadyLinked = await _tournamentSponsorRepository.IsAlreadyLinked(sponsorId, tournamentId);
-            if (alreadyLinked)
-                throw new InvalidOperationException("El patrocinador ya está vinculado a este torneo.");
-
+            // Validación de monto
             if (contractAmount <= 0)
-                throw new InvalidOperationException("El monto del contrato debe ser mayor a 0.");
+                throw new ArgumentException("Contract amount must be greater than zero.");
+
+            // Validación de existencia de relación previa
+            if (await _tournamentSponsorRepository.IsAlreadyLinked(sponsorId, tournamentId))
+                throw new InvalidOperationException("This sponsor is already linked to the tournament.");
 
             await _tournamentSponsorRepository.AddLinkAsync(sponsorId, tournamentId, contractAmount);
-        }
-
-        private bool IsValidEmail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email)) return false;
-            try {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            } catch {
-                return false;
-            }
         }
     }
 }

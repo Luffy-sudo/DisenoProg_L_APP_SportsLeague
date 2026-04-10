@@ -144,3 +144,5 @@ Al usar el método _AddScopped_ se crea una única instancia de _TeamService_ de
 **5.** [SponsorRequestDTO](SportsLeague.API\DTOs\Request\SponsorRequestDTO.cs) (lo que envía el cliente al crear o actualizar) y [SponsorResponseDTO](SportsLeague.API\DTOs\Response\SponsorResponseDTO.cs) (lo que retorna la API).<br/><br>
 
 **6. Perfil de AutoMapper**: agregar los mapeos Sponsor → SponsorResponseDTO y SponsorRequestDTO → Sponsor en el [MappingProfile](SportsLeague.API\Mappings\MappingProfile.cs) existente.
+
+La API funciona para registrar Sponsors
