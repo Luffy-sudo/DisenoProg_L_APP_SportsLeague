@@ -7,4 +7,10 @@ public interface ISponsorService
     
     Task CreateSponsorAsync(Sponsor sponsor);
     Task LinkToTournamentAsync(int sponsorId, int tournamentId, decimal contractAmount);
+
+    Task<Sponsor?> GetByIdAsync(int id);
+
+    Task UpdateAsync(Sponsor sponsor);
+
+    Task DeleteAsync(int id);
 }
