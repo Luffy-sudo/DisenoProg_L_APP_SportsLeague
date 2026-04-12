@@ -62,6 +62,12 @@ namespace SportsLeague.Domain.Services
                 throw new InvalidOperationException("This sponsor is already linked to the tournament.");
 
             await _tournamentSponsorRepository.AddLinkAsync(sponsorId, tournamentId, contractAmount);
+
+            // Validación existencia del torneo
+            var tournamentExists = await _tournamentSponsorRepository.GetByTournamentIdAsync(tournamentId);
+            if (!tournamentExists.Any())
+                throw new KeyNotFoundException($"El Torneo con ID {tournamentId} no existe.");
+            
         }
 
         public async Task<IEnumerable<TournamentSponsor>> GetSponsorsByTournamentAsync(int tournamentId)
