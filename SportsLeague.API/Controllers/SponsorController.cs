@@ -78,5 +78,14 @@ namespace SportsLeague.WebAPI.Controllers
                 
             return Ok(new { message = "Sponsor linked successfully to tournament." });
         }
+
+        [HttpGet("tournament/{tournamentId}")]
+        public async Task<ActionResult<IEnumerable<SponsorResponseDTO>>> GetSponsorsByTournament(int tournamentId)
+        {
+            var links = await _sponsorService.GetSponsorsByTournamentAsync(tournamentId);
+            var response = _mapper.Map<IEnumerable<TournamentSponsorResponseDTO>>(links);
+            return Ok(response);
+        }
+
     }
 }
