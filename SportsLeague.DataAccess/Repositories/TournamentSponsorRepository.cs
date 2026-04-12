@@ -37,5 +37,13 @@ namespace SportsLeague.DataAccess.Repositories
             await _context.TournamentSponsors.AddAsync(tournamentSponsor);
             await _context.SaveChangesAsync();
         }
+
+        // Obtiene todos los patrocinadores vinculados a un torneo específico
+        public async Task<IEnumerable<TournamentSponsor>> GetByTournamentIdAsync(int tournamentId)
+        {
+            return await _context.TournamentSponsors
+                .Where(ts => ts.TournamentId == tournamentId)
+                .ToListAsync();
+        }
     }
 }
