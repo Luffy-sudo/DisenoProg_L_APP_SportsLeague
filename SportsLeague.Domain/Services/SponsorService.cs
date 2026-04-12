@@ -63,5 +63,10 @@ namespace SportsLeague.Domain.Services
 
             await _tournamentSponsorRepository.AddLinkAsync(sponsorId, tournamentId, contractAmount);
         }
+
+        public async Task<IEnumerable<TournamentSponsor>> GetSponsorsByTournamentAsync(int tournamentId)
+        {
+            return await _tournamentSponsorRepository.GetByTournamentIdAsync(tournamentId);
+        }
     }
 }

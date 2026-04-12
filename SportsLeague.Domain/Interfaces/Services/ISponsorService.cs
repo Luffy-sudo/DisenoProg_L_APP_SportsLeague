@@ -8,6 +8,8 @@ public interface ISponsorService
     Task CreateSponsorAsync(Sponsor sponsor);
     Task LinkToTournamentAsync(int sponsorId, int tournamentId, decimal contractAmount);
 
+    Task<IEnumerable<TournamentSponsor>> GetSponsorsByTournamentAsync(int tournamentId);
+
     Task<Sponsor?> GetByIdAsync(int id);
 
     Task UpdateAsync(Sponsor sponsor);
