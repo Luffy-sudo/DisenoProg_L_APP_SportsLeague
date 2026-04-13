@@ -20,6 +20,8 @@ namespace SportsLeague.DataAccess.Repositories
                 .AnyAsync(ts => ts.SponsorId == sponsorId && ts.TournamentId == tournamentId);
         }
 
+        
+        //Recibe los IDs del Sponsor y del Torneo, junto con el monto del contrato, y crea un nuevo vínculo en la tabla de unión.
         public async Task AddLinkAsync(int sponsorId, int tournamentId, decimal amount)
         {
             var link = new TournamentSponsor
@@ -42,11 +44,12 @@ namespace SportsLeague.DataAccess.Repositories
                 .ToListAsync();
         }
 
-        // Para listar Torneos de un Sponsor (Lo que pide la guía)
+        // Recupera todos los torneos donde participa un sponsor específico.
+        
         public async Task<IEnumerable<TournamentSponsor>> GetBySponsorIdAsync(int sponsorId)
         {
             return await _context.TournamentSponsors
-                .Include(ts => ts.Tournament)
+                .Include(ts => ts.Tournament) 
                 .Where(ts => ts.SponsorId == sponsorId)
                 .ToListAsync();
         }
