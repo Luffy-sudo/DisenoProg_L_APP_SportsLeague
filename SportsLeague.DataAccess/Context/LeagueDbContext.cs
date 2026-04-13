@@ -118,9 +118,7 @@ namespace SportsLeague.DataAccess.Context
             // ── TournamentSponsor Configuration ──
             modelBuilder.Entity<TournamentSponsor>(entity =>
             {
-                // NOTA: Si tu clase TournamentSponsor tiene una propiedad "Id", usa HasKey(ts => ts.Id).
-                // Si quieres que la llave sea la combinación de ambos, usa la línea de abajo y borra la del Id.
-                entity.HasKey(ts => ts.Id); 
+                entity.HasKey(ts => new { ts.TournamentId, ts.SponsorId }); 
 
                 entity.Property(ts => ts.ContractAmount)
                       .IsRequired()
@@ -138,8 +136,6 @@ namespace SportsLeague.DataAccess.Context
                       .HasForeignKey(ts => ts.SponsorId)
                       .OnDelete(DeleteBehavior.Cascade);
 
-                // Mantiene la restricción de que un patrocinador no se repita en el mismo torneo
-                entity.HasIndex(ts => new { ts.TournamentId, ts.SponsorId }).IsUnique();
             });
         }    
             public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
