@@ -6,7 +6,10 @@ namespace SportsLeague.Domain.Interfaces.Repositories
     {
         Task<bool> IsAlreadyLinked(int sponsorId, int tournamentId);
         Task AddLinkAsync(int sponsorId, int tournamentId, decimal amount);
-        // Agrega aquí los métodos de IGenericRepository si los heredas
+     
         Task<IEnumerable<TournamentSponsor>> GetByTournamentIdAsync(int tournamentId);
+
+        Task<IEnumerable<TournamentSponsor>> GetBySponsorIdAsync(int sponsorId);
+
     }
 }

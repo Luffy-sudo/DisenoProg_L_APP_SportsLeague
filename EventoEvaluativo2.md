@@ -145,6 +145,14 @@ Al usar el método _AddScopped_ se crea una única instancia de _TeamService_ de
 
 **6. Perfil de AutoMapper**: agregar los mapeos Sponsor → SponsorResponseDTO y SponsorRequestDTO → Sponsor en el [MappingProfile](SportsLeague.API\Mappings\MappingProfile.cs) existente.<br/><br>
 
-**7.** [SponsorController](SportsLeague.API\Controllers\SponsorController.cs) con los 5 endpoints CRUD: GET all, GET by id, POST, PUT, DELETE.
+**7.** [SponsorController](SportsLeague.API\Controllers\SponsorController.cs) con los 5 endpoints CRUD: GET all, GET by id, POST, PUT, DELETE.<br/><br>
 
-\*\*Para la relación N:M
+**Para la relación N:M TournamentSponsor**
+
+**1.** [TournamentSponsor](SportsLeague.Domain\Entities\TournamentSponsor.cs) con sus respectivas propiedades. Debe tener dos FKs (TournamentId y SponsorId) con sus respectivas Navigation Properties.
+
+**2.** Configuración en el [DbContext](SportsLeague.DataAccess\Context\LeagueDbContext.cs): agregar el DbSet <'TournamentSponsor'>, configurar las dos FKs con HasOne().WithMany().HasForeignKey(), y crear un índice único compuesto en [TournamentId, SponsorId] para evitar que un Sponsor se vincule dos veces al mismo torneo.
+
+**3.** [ITournamentSponsorRepository](SportsLeague.Domain\Interfaces\Repositories\ITournamentSponsorRepository.cs) + [TournamentSponsorRepository](SportsLeague.DataAccess\Repositories\TournamentSponsorRepository.cs): Este Repository necesita métodos específicos
+
+**4.** []

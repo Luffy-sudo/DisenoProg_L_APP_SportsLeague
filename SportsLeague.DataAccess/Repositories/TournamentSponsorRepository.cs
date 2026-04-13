@@ -14,35 +14,40 @@ namespace SportsLeague.DataAccess.Repositories
             _context = context;
         }
 
-        /// Verifica si ya existe una relación activa entre un patrocinador y un torneo.
-     
-   
         public async Task<bool> IsAlreadyLinked(int sponsorId, int tournamentId)
         {
             return await _context.TournamentSponsors
                 .AnyAsync(ts => ts.SponsorId == sponsorId && ts.TournamentId == tournamentId);
         }
 
-        /// Crea la vinculación en la tabla intermedia con el monto del contrato.
         public async Task AddLinkAsync(int sponsorId, int tournamentId, decimal amount)
         {
-            var tournamentSponsor = new TournamentSponsor
+            var link = new TournamentSponsor
             {
                 SponsorId = sponsorId,
                 TournamentId = tournamentId,
-                ContractAmount = amount
+                ContractAmount = amount,
+                JoinedAt = DateTime.Now
             };
-
-            // Usamos el contexto directamente o el método CreateAsync heredado
-            await _context.TournamentSponsors.AddAsync(tournamentSponsor);
+            await _context.TournamentSponsors.AddAsync(link);
             await _context.SaveChangesAsync();
         }
 
-        // Obtiene todos los patrocinadores vinculados a un torneo específico
+        // Para listar Sponsors de un Torneo (Corrigiendo el sponsorName: null)
         public async Task<IEnumerable<TournamentSponsor>> GetByTournamentIdAsync(int tournamentId)
         {
             return await _context.TournamentSponsors
+                .Include(ts => ts.Sponsor) 
                 .Where(ts => ts.TournamentId == tournamentId)
+                .ToListAsync();
+        }
+
+        // Para listar Torneos de un Sponsor (Lo que pide la guía)
+        public async Task<IEnumerable<TournamentSponsor>> GetBySponsorIdAsync(int sponsorId)
+        {
+            return await _context.TournamentSponsors
+                .Include(ts => ts.Tournament)
+                .Where(ts => ts.SponsorId == sponsorId)
                 .ToListAsync();
         }
     }
