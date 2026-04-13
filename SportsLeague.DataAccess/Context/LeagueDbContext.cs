@@ -141,6 +141,19 @@ namespace SportsLeague.DataAccess.Context
                 // Mantiene la restricción de que un patrocinador no se repita en el mismo torneo
                 entity.HasIndex(ts => new { ts.TournamentId, ts.SponsorId }).IsUnique();
             });
+        }    
+            public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+            {
+                var entries = ChangeTracker
+                    .Entries()
+                    .Where(e => e.Entity is AuditBase && (e.State == EntityState.Added));
+
+                foreach (var entityEntry in entries)
+                {
+                    ((AuditBase)entityEntry.Entity).CreatedAt = DateTime.Now;
+                }
+
+                return base.SaveChangesAsync(cancellationToken);
+            }
         }
-    }
 }
