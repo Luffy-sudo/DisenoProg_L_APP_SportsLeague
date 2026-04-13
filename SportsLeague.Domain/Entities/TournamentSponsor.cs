@@ -12,3 +12,13 @@ namespace SportsLeague.Domain.Entities
         public Sponsor Sponsor { get; set; } = null!;
     }
 }
+
+/*
+
+TournamentSponsor funciona como una tabla de unión que contiene
+las llaves foráneas. Al definir estas propiedades con = null!, 
+permite que Entity Framework realice un Join
+automático, lo que hace posible navegar desde el vínculo hacia la 
+información completa del patrocinador o del torneo.
+
+*/

@@ -119,14 +119,18 @@ namespace SportsLeague.DataAccess.Context
             modelBuilder.Entity<TournamentSponsor>(entity =>
             {
                 entity.HasKey(ts => new { ts.TournamentId, ts.SponsorId }); 
+                /*Llaves compuestas: Esto conecta las tablas y asegura que 
+                no haya duplicados.
+
+                */
 
                 entity.Property(ts => ts.ContractAmount)
                       .IsRequired()
                       .HasColumnType("decimal(18,2)");
 
                 entity.Property(ts => ts.JoinedAt).IsRequired();
-
-                entity.HasOne(ts => ts.Tournament)
+                
+                entity.HasOne(ts => ts.Tournament) //Define las ForeignKeys y permite que EF sepa como hacer los Joins
                       .WithMany(t => t.TournamentSponsors)
                       .HasForeignKey(ts => ts.TournamentId)
                       .OnDelete(DeleteBehavior.Cascade);
@@ -138,6 +142,8 @@ namespace SportsLeague.DataAccess.Context
 
             });
         }    
+            
+            // Se detecta una entidad nueva y se le asigna fecha y hora actual.
             public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
             {
                 var entries = ChangeTracker
