@@ -27,14 +27,14 @@ Indica como se aplica una operación de eliminación a las entidades dependiente
 
 **Campos**
 
-----------------------------------------------------------------------------------------------------------------------------------------------
-|**Nombre**		**Valor**			**Description**
-|
-| Cascade			   3			Elimina automáticamente las entidades dependientes cuando se elimina la relación con la entidad de   	|								    seguridad y crea una restricción de clave externa en la base de datos con eliminaciones en cascada 		|									habilitadas.
-----------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
+|**Nombre**		**Valor**			**Description**                                                                                        
+|                                                                                                                                          
+| Cascade			   3			Elimina automáticamente las entidades dependientes cuando se elimina la relación con la entidad de       |								    seguridad y crea una restricción de clave externa en la base de datos con eliminaciones en cascada    	|									habilitadas.
+-------------------------------------------------------------------------------------------------------------------------------------------
 |
 | Restrict		       1			Establece los valores de clave externa en **null** según corresponda cuando se realizan cambios en 		|									las entidades con seguimiento y crea una restricción de clave externa que no es en cascada en la base de |									datos.
-----------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 Como la tabla **Match** tiene múltiples FKs hacia la tabla **Team**, con DeleteBehavior.Cascade, SQL Server detecta múltiples caminos de cascada y rechaza la migración con un error. La solución es usar DeleteBehavior.Restrict en las FKs hacia **Team**. Esto significa que no se puede eliminar un **Team** si tiene partidos asociados. El usuario debe eliminar primero los partidos manualmente.
 
